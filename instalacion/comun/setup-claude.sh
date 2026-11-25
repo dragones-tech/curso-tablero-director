@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Se ejecuta como el usuario normal dentro de Ubuntu (WSL).
+# Se ejecuta como el usuario normal: dentro de Ubuntu (WSL) en Windows, o en macOS.
 # Instala Claude Code y herdr (multiplexor de terminal para agentes) y los
 # actualiza a la ultima version.
 set -euo pipefail
@@ -8,9 +8,13 @@ BIN_DIR="$HOME/.local/bin"
 export PATH="$BIN_DIR:$PATH"
 
 # Asegurar ~/.local/bin en el PATH de las terminales nuevas
-if ! grep -q 'HOME/.local/bin' "$HOME/.bashrc" 2>/dev/null; then
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
-fi
+# (Ubuntu usa bash; macOS usa zsh)
+for rc in "$HOME/.bashrc" "$HOME/.zshrc"; do
+  case "$rc" in *zshrc) [ "$(uname)" = "Darwin" ] || continue ;; esac
+  if ! grep -q 'HOME/.local/bin' "$rc" 2>/dev/null; then
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$rc"
+  fi
+done
 
 if command -v claude >/dev/null 2>&1; then
   echo ">> Claude Code ya esta instalado: $(claude --version)"
@@ -45,4 +49,4 @@ else
   echo ">> AVISO: herdr no quedo en el PATH; abre una terminal nueva y ejecuta 'herdr'."
 fi
 
-echo ">> Para iniciar sesion abre Ubuntu y ejecuta: claude"
+echo ">> Para iniciar sesion abre una terminal nueva y ejecuta: claude"

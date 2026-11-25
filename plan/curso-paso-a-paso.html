@@ -372,7 +372,7 @@ table{font-size:13px}th,td{padding:6px 6px 6px 0}
   <div class="body">
     <h2>Lo que cada participante trae</h2>
     <div class="cols">
-      <div class="cell r"><h3>Laptop</h3><p>Windows 10 (2004 o más reciente) u 11, Mac o Linux, con conexión estable a internet y al menos 15 GB libres. En Windows se necesitan permisos de administrador y la virtualización activada.</p></div>
+      <div class="cell r"><h3>Laptop</h3><p>Windows 10 (2004 o más reciente) u 11, o Mac con macOS 13 o más reciente (procesador M o Intel), con conexión estable a internet, al menos 15 GB libres y de preferencia 8 GB de memoria. En Windows se necesitan permisos de administrador y la virtualización activada; en Mac, no.</p></div>
       <div class="cell"><h3>Cuenta de Claude</h3><p>Con un plan que incluya Claude Code. Con ella se inicia sesión la primera vez.</p></div>
       <div class="cell"><h3>GitHub y DigitalOcean</h3><p>GitHub (gratuita) guarda el trabajo. DigitalOcean es donde se publica, a bajo costo mensual y se puede apagar.</p></div>
       <div class="cell"><h3>Sus propios reportes</h3><p>Excel de 2 o 3 áreas, o una versión sin datos confidenciales, para aplicar lo aprendido a su caso.</p></div>
@@ -389,7 +389,7 @@ table{font-size:13px}th,td{padding:6px 6px 6px 0}
       <li><b class="n">1</b><div><h3>Windows: instalar Ubuntu y reiniciar</h3><p>Abrir PowerShell en <code>instalacion\windows</code> (escribir <code>powershell</code> en la barra de direcciones del Explorador) y pegar:</p><pre><code>powershell -ExecutionPolicy Bypass -File .\1-instalar-wsl.ps1</code></pre><p style="margin-top:6px">Aceptar el permiso de administrador (o pedir a sistemas que escriba su clave). Si pide reiniciar, reiniciar y volver a ejecutarlo.</p></div></li>
       <li><b class="n">2</b><div><h3>Windows: crear el usuario de Ubuntu</h3><p>Abrir <b>Ubuntu 24.04</b> desde el menú Inicio y crear usuario y contraseña. Al escribir la contraseña no aparece nada en pantalla: es normal.</p></div></li>
       <li><b class="n">3</b><div><h3>Windows: instalar todo lo demás</h3><p>De nuevo en PowerShell, en la misma carpeta:</p><pre><code>powershell -ExecutionPolicy Bypass -File .\2-configurar-docker.ps1</code></pre><p style="margin-top:6px">Instala Git, Docker, Claude Code y herdr, los actualiza y prepara el proyecto. Termina con un mensaje verde: <b>Listo</b>.</p></div></li>
-      <li><b class="n">·</b><div><h3>Mac o Linux</h3><p>Guía detallada en preparación. Por ahora, en la Terminal:</p><pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre></div></li>
+      <li><b class="n">·</b><div><h3>Mac</h3><p>Un solo programa, sin Homebrew ni administrador. En la Terminal escribir <code>bash</code> y un espacio, arrastrar a la ventana el archivo <code>instalacion/mac/instalar-mac.sh</code> y presionar Enter. Instala las herramientas de Apple (Git), Rancher Desktop (Docker), Claude Code y herdr. Guía: <code>instalacion/mac/README.md</code>.</p></div></li>
     </ol>
   </div>
 </section>

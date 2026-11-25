@@ -31,6 +31,8 @@ if ($LinuxUser -eq "root" -or [string]::IsNullOrEmpty($LinuxUser)) {
 $WslPath = (wsl.exe -d $Distro -- wslpath -a ($Here -replace '\\', '/')).Trim()
 # El proyecto Docker esta en la carpeta de arriba (instalacion\proyecto), compartido con Mac
 $ProyectoPath = (wsl.exe -d $Distro -- wslpath -a ((Split-Path -Parent $Here) -replace '\\', '/')).Trim() + "/proyecto"
+# Scripts compartidos con Mac (instalacion\comun)
+$ComunPath = (wsl.exe -d $Distro -- wslpath -a ((Split-Path -Parent $Here) -replace '\\', '/')).Trim() + "/comun"
 # Archivos de los alumnos: carpeta alumnos en la raiz del curso
 $AlumnosPath = (wsl.exe -d $Distro -- wslpath -a ((Split-Path -Parent (Split-Path -Parent $Here)) -replace '\\', '/')).Trim() + "/alumnos"
 
@@ -45,11 +47,11 @@ wsl.exe --shutdown
 Start-Sleep -Seconds 3
 
 Write-Host "Instalando / actualizando Claude Code y herdr..." -ForegroundColor Cyan
-wsl.exe -d $Distro -- bash -c "sed 's/\r$//' '$WslPath/wsl/setup-claude.sh' | bash"
+wsl.exe -d $Distro -- bash -c "sed 's/\r$//' '$ComunPath/setup-claude.sh' | bash"
 if ($LASTEXITCODE -ne 0) { Write-Host "Fallo la instalacion de Claude Code." -ForegroundColor Red; exit 1 }
 
 Write-Host "Copiando el proyecto y los archivos de ejemplo a ~/proyecto-python y arrancando la aplicacion..." -ForegroundColor Cyan
-wsl.exe -d $Distro -- bash -c "sed 's/\r$//' '$WslPath/wsl/build-proyecto.sh' | bash -s -- '$ProyectoPath' '$AlumnosPath'"
+wsl.exe -d $Distro -- bash -c "sed 's/\r$//' '$ComunPath/build-proyecto.sh' | bash -s -- '$ProyectoPath' '$AlumnosPath'"
 if ($LASTEXITCODE -ne 0) { Write-Host "Fallo la construccion del contenedor." -ForegroundColor Red; exit 1 }
 
 Write-Host ""

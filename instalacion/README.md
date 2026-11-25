@@ -1,6 +1,8 @@
-# Instalación: preparar tu computadora
+# Instalación en Windows: preparar tu computadora
 
-Esta guía explica cómo dejar tu computadora lista **antes del curso**. No hace falta saber programar: solo hay que seguir los pasos en orden y copiar y pegar algunos comandos.
+> 🍎 **¿Tienes Mac?** Sigue la [guía de instalación para Mac](mac/README.md).
+
+Esta guía explica cómo dejar tu computadora con Windows lista **antes del curso**. No hace falta saber programar: solo hay que seguir los pasos en orden y copiar y pegar algunos comandos.
 
 **Tiempo aproximado:** 30 a 60 minutos (casi todo es esperar descargas). Puede haber un reinicio a mitad del proceso.
 
@@ -241,4 +243,4 @@ Si nada de esto resuelve el problema, toma una **captura de pantalla del error**
 
 ## Instalación en Mac
 
-🚧 **Pendiente.** Esta sección se agregará más adelante. Si usas Mac, avisa al instructor.
+Está en su propia guía: [instalación para Mac](mac/README.md).

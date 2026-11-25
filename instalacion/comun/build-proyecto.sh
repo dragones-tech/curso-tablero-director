@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Se ejecuta como el usuario normal dentro de Ubuntu (WSL).
+# Se ejecuta como el usuario normal: dentro de Ubuntu (WSL) en Windows, o en macOS.
+# Compatible con el bash 3.2 de macOS (no usar sed -i: es distinto en Mac y Linux).
 # Uso: build-proyecto.sh <ruta_origen_del_proyecto> <ruta_archivos_alumnos>
 set -euo pipefail
 
@@ -14,7 +15,7 @@ else
   cp -r "$ORIGEN" "$DESTINO"
   # Normalizar finales de linea por si vienen de Windows
   find "$DESTINO" -type f \( -name "*.py" -o -name "*.txt" -o -name "*.yml" -o -name "*.md" \
-    -o -name "Dockerfile" -o -name ".gitignore" \) -exec sed -i 's/\r$//' {} +
+    -o -name "Dockerfile" -o -name ".gitignore" \) -exec perl -pi -e 's/\r$//' {} +
   echo ">> Proyecto copiado a $DESTINO"
 fi
 
@@ -41,7 +42,8 @@ if [ ! -d .git ]; then
 fi
 
 # Esperar a que el servicio docker este arriba
-for i in $(seq 1 20); do
+# (en Mac, Rancher Desktop puede tardar unos minutos la primera vez)
+for i in $(seq 1 300); do
   docker info >/dev/null 2>&1 && break
   sleep 1
 done
