@@ -46,6 +46,7 @@ Sirve para Mac con procesador **Apple (M1, M2, M3, M4…)** y con procesador **I
 
 3. Pégala en la Terminal con `Cmd + V` y presiona **Enter**.
 4. Espera. Primero baja los materiales del curso y luego instala todo. Vas a ver mucho texto pasar; es normal. Durante la instalación pueden aparecer estas ventanas:
+   - **"La Terminal quiere acceder a archivos de la carpeta Documentos"** (o **"…del Escritorio"**): haz clic en **Permitir**. Ahí se guardan los materiales del curso y los accesos directos.
    - **"El comando git requiere las herramientas de desarrollo..."**: haz clic en **Instalar** y luego en **Aceptar**. Tarda de 5 a 20 minutos; el programa espera solo.
    - **Bienvenida de Rancher Desktop**: deja las opciones como están y haz clic en **Aceptar**.
    - Si macOS pregunta si permites algo a **Rancher Desktop**, responde que sí.
@@ -56,7 +57,12 @@ Sirve para Mac con procesador **Apple (M1, M2, M3, M4…)** y con procesador **I
 
 > Si aparece un mensaje en **rojo** que empieza con *"ERROR"*, léelo: casi siempre dice qué hacer. Puedes volver a pegar la línea las veces que haga falta: lo que ya está instalado no se repite.
 >
-> Los materiales del curso quedan en tu carpeta de inicio: `~/curso-tablero-director` (en el Finder: menú **Ir** → **Inicio**).
+> Los materiales del curso quedan en **Documentos**, en la carpeta `curso-tablero-director`.
+
+> 🖱️ **Accesos directos.** Al terminar, en tu **Escritorio** quedan tres accesos directos (también en la carpeta del curso):
+> - **Curso - Terminal**: abre la Terminal ya dentro del proyecto. Solo escribes `claude`.
+> - **Curso - Archivos del proyecto**: los archivos que va creando Claude, en el Finder.
+> - **Curso - Mi tablero**: tu aplicación en el navegador (<http://localhost:8000>).
 
 <details>
 <summary><b>Alternativa: si ya tienes la carpeta del curso</b></summary>
@@ -70,13 +76,8 @@ Si descargaste el curso como `.zip` (y la Mac lo descomprimió), en la Terminal 
 
 Este paso se hace una sola vez.
 
-1. Cierra la Terminal y abre **una nueva** (`Cmd + Espacio` → `Terminal`).
-2. Escribe estos dos comandos, presionando Enter después de cada uno:
-
-   ```bash
-   cd ~/proyecto-python
-   claude
-   ```
+1. Haz doble clic en **Curso - Terminal**, en tu Escritorio. Se abre la Terminal ya dentro del proyecto.
+2. Escribe `claude` y presiona Enter.
 
 3. Claude Code te hará unas preguntas iniciales (por ejemplo, el tema de colores). Muévete con las **flechas** del teclado y confirma con **Enter**.
 4. Cuando te pida iniciar sesión, elige la opción de tu **cuenta de Claude**. Se abre el navegador: inicia sesión y autoriza el acceso.
@@ -91,19 +92,13 @@ Este paso se hace una sola vez.
 
 **Rancher Desktop** arranca solo al encender la Mac (verás su ícono en la barra de menús, arriba a la derecha). Cada vez que quieras trabajar:
 
-1. Abre la **Terminal**.
-2. Escribe:
+1. Haz doble clic en **Curso - Terminal**, en tu Escritorio.
+2. Escribe `claude` y presiona Enter.
+3. Lo que construyas se ve en el navegador en **<http://localhost:8000>** (o con doble clic en **Curso - Mi tablero**). La página se actualiza sola cada vez que Claude cambia algo (recárgala con `Cmd + R`).
 
-   ```bash
-   cd ~/proyecto-python
-   claude
-   ```
+> **Tus archivos.** Para verlos, doble clic en **Curso - Archivos del proyecto**. Los archivos de ejemplo del curso están en la carpeta `archivos_ejemplo`.
 
-3. Lo que construyas se ve en el navegador en **<http://localhost:8000>**. La página se actualiza sola cada vez que Claude cambia algo (recárgala con `Cmd + R`).
-
-> **Tus archivos.** Los archivos de ejemplo del curso están en `~/proyecto-python/archivos_ejemplo`. Para verlos en el Finder: menú **Ir** → **Inicio** → carpeta `proyecto-python`.
-
-> **Opcional: varias sesiones a la vez con herdr.** En lugar de `claude`, escribe `herdr` dentro de `~/proyecto-python`. El instructor lo mostrará en el curso.
+> **Opcional: varias sesiones a la vez con herdr.** En lugar de `claude`, escribe `herdr`. El instructor lo mostrará en el curso.
 
 > **Atajos útiles en la Terminal:** copiar `Cmd + C`, pegar `Cmd + V`, detener lo que se esté ejecutando `Ctrl + C`.
 
@@ -144,7 +139,7 @@ Cierra la Terminal y abre una nueva. Si sigue igual, vuelve a pegar la línea de
 <details>
 <summary><b>La página http://localhost:8000 no abre</b></summary>
 
-Revisa que Rancher Desktop esté abierto (ícono en la barra de menús). Luego, en la Terminal, escribe `cd ~/proyecto-python` y después `docker compose up -d`. Espera unos segundos y recarga la página. Si sigue sin abrir, escribe `docker compose logs app` y manda una captura al instructor.
+Revisa que Rancher Desktop esté abierto (ícono en la barra de menús). Luego abre **Curso - Terminal** y escribe `docker compose up -d`. Espera unos segundos y recarga la página. Si sigue sin abrir, escribe `docker compose logs app` y manda una captura al instructor.
 </details>
 
 <details>

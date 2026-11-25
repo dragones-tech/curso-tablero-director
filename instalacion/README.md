@@ -60,7 +60,12 @@ Revisa que tengas todo esto:
 
 > Si aparece un mensaje en **rojo**, léelo y revisa la sección [Problemas comunes](#problemas-comunes). Puedes volver a dar doble clic a `instalar-windows` las veces que haga falta: lo que ya está instalado no se repite.
 >
-> Los materiales del curso quedan en tu carpeta de usuario: `C:\Users\<tu usuario>\curso-tablero-director`.
+> Los materiales del curso quedan en **Documentos**, en la carpeta `curso-tablero-director`.
+
+> 🖱️ **Accesos directos.** Al terminar, en tu **Escritorio** quedan tres accesos directos (también en la carpeta del curso):
+> - **Curso - Terminal**: abre Ubuntu ya dentro del proyecto. Solo escribes `claude`.
+> - **Curso - Archivos del proyecto**: los archivos que va creando Claude, en el Explorador.
+> - **Curso - Mi tablero**: tu aplicación en el navegador (<http://localhost:8000>).
 
 > 🔑 **Tu usuario de Ubuntu ya está creado:** usuario **`alumno`**, contraseña **`curso2026`**. Es igual para todos los participantes; no tienes que inventar uno. La contraseña solo se pide si alguna vez instalas algo dentro de Ubuntu (y, al escribirla, no aparece nada en pantalla: es normal).
 >
@@ -92,13 +97,8 @@ Revisa que tengas todo esto:
 
 Este paso se hace una sola vez.
 
-1. Abre **Ubuntu 24.04** desde el menú Inicio.
-2. Escribe estos dos comandos, presionando Enter después de cada uno:
-
-   ```bash
-   cd ~/proyecto-python
-   claude
-   ```
+1. Haz doble clic en **Curso - Terminal**, en tu Escritorio. Se abre una ventana de Ubuntu ya dentro del proyecto.
+2. Escribe `claude` y presiona Enter.
 
 3. Claude Code te hará unas preguntas iniciales (por ejemplo, el tema de colores). Muévete con las **flechas** del teclado y confirma con **Enter**.
 4. Cuando te pida iniciar sesión, elige la opción de tu **cuenta de Claude**.
@@ -115,19 +115,13 @@ Este paso se hace una sola vez.
 
 Cada vez que quieras trabajar:
 
-1. Abre **Ubuntu 24.04** desde el menú Inicio.
-2. Escribe:
+1. Haz doble clic en **Curso - Terminal**, en tu Escritorio.
+2. Escribe `claude` y presiona Enter.
+3. Lo que construyas se ve en el navegador en **<http://localhost:8000>** (o con doble clic en **Curso - Mi tablero**). La página se actualiza sola cada vez que Claude cambia algo (recárgala con `F5`).
 
-   ```bash
-   cd ~/proyecto-python
-   claude
-   ```
+> **Tus archivos.** Para verlos, doble clic en **Curso - Archivos del proyecto**. Los archivos de ejemplo del curso están en la carpeta `archivos_ejemplo`. Las reglas del proyecto (fecha de corte, cómo trabajar) están en `~/proyecto-python/CLAUDE.md`, que Claude lee solo al abrirse.
 
-3. Lo que construyas se ve en el navegador en **<http://localhost:8000>**. La página se actualiza sola cada vez que Claude cambia algo (recárgala con `F5`).
-
-> **Tus archivos.** Los archivos de ejemplo del curso están en `~/proyecto-python/archivos_ejemplo`. Las reglas del proyecto (fecha de corte, cómo trabajar) están en `~/proyecto-python/CLAUDE.md`, que Claude lee solo al abrirse.
-
-> **Opcional: varias sesiones a la vez con herdr.** En lugar de `claude`, escribe `herdr` dentro de `~/proyecto-python`. Te permite tener varias sesiones de Claude Code en la misma ventana y ver cuál necesita tu atención. El instructor lo mostrará en el curso.
+> **Opcional: varias sesiones a la vez con herdr.** En lugar de `claude`, escribe `herdr`. Te permite tener varias sesiones de Claude Code en la misma ventana y ver cuál necesita tu atención. El instructor lo mostrará en el curso.
 
 > **Atajos útiles en la ventana de Ubuntu:**
 > - Copiar: seleccionar con el mouse y `Ctrl + Shift + C`
@@ -197,7 +191,7 @@ Algunas redes bloquean las descargas que hacen estos programas. Si ves errores d
 <details>
 <summary><b>La página http://localhost:8000 no abre</b></summary>
 
-Abre Ubuntu y escribe `cd ~/proyecto-python` y luego `docker compose up -d`. Espera unos segundos y recarga la página. Si sigue sin abrir, escribe `docker compose logs app` y manda una captura al instructor.
+Abre **Curso - Terminal** y escribe `docker compose up -d`. Espera unos segundos y recarga la página. Si sigue sin abrir, escribe `docker compose logs app` y manda una captura al instructor.
 </details>
 
 Si nada de esto resuelve el problema, toma una **captura de pantalla del error** (`Windows + Shift + S`) y envíasela al instructor antes del curso.

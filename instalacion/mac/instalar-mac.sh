@@ -4,8 +4,8 @@
 #
 # Uso (en la app Terminal, una sola linea):
 #   bash -c "$(curl -fsSL https://raw.githubusercontent.com/dragones-tech/curso-tablero-director/main/instalacion/mac/instalar-mac.sh)"
-# Asi se descarga solo: baja los materiales del curso a ~/curso-tablero-director
-# y sigue desde ahi. Si ya tienes la carpeta del curso, tambien sirve:
+# Asi se descarga solo: baja los materiales del curso a ~/Documents/curso-tablero-director
+# (o a ~/curso-tablero-director si macOS no da permiso para Documentos) y sigue desde ahi. Si ya tienes la carpeta del curso, tambien sirve:
 #   bash <carpeta del curso>/instalacion/mac/instalar-mac.sh
 #
 # Instala: Command Line Tools de Apple (trae Git), Rancher Desktop (Docker Engine
@@ -29,8 +29,7 @@ error() { printf '\n\033[1;31m>> ERROR: %s\033[0m\n' "$*"; exit 1; }
 # ---------------------------------------------------------------------------
 AQUI="$(cd "$(dirname "$0")" 2>/dev/null && pwd || pwd)"
 if [ ! -f "$AQUI/../comun/setup-claude.sh" ]; then
-  CURSO_DESTINO="$HOME/curso-tablero-director"
-  paso "Descargando los materiales del curso a $CURSO_DESTINO ..."
+  paso "Descargando los materiales del curso..."
   TMPC="$(mktemp -d)"
   curl -fL --progress-bar -o "$TMPC/curso.zip" \
     https://github.com/dragones-tech/curso-tablero-director/archive/refs/heads/main.zip \
@@ -38,9 +37,18 @@ if [ ! -f "$AQUI/../comun/setup-claude.sh" ]; then
   ditto -x -k "$TMPC/curso.zip" "$TMPC/x"
   ORIGEN_CURSO="$(find "$TMPC/x" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
   [ -n "$ORIGEN_CURSO" ] || error "La descarga de los materiales del curso llego vacia. Vuelve a pegar la linea."
-  mkdir -p "$CURSO_DESTINO"
-  ditto "$ORIGEN_CURSO" "$CURSO_DESTINO"   # copia encima: actualiza sin borrar nada
+  # Documentos: macOS puede preguntar si la Terminal puede usar esa carpeta.
+  # Si no da permiso, se usa la carpeta de inicio.
+  echo "   Si macOS pregunta si la Terminal puede acceder a Documentos, haz clic en Permitir."
+  CURSO_DESTINO="$HOME/Documents/curso-tablero-director"
+  if ! { mkdir -p "$CURSO_DESTINO" && ditto "$ORIGEN_CURSO" "$CURSO_DESTINO"; } 2>/dev/null; then
+    CURSO_DESTINO="$HOME/curso-tablero-director"
+    aviso "No hubo permiso para Documentos; los materiales van a $CURSO_DESTINO"
+    mkdir -p "$CURSO_DESTINO"
+    ditto "$ORIGEN_CURSO" "$CURSO_DESTINO"   # copia encima: actualiza sin borrar nada
+  fi
   rm -rf "$TMPC"
+  paso "Materiales del curso en $CURSO_DESTINO"
   exec bash "$CURSO_DESTINO/instalacion/mac/instalar-mac.sh"
 fi
 INSTALACION="$(cd "$AQUI/.." && pwd)"
@@ -193,10 +201,41 @@ export PATH="$HOME/.local/bin:$PATH"
 paso "Copiando el proyecto y los archivos de ejemplo a ~/proyecto-python y arrancando la aplicacion..."
 bash "$INSTALACION/comun/build-proyecto.sh" "$INSTALACION/proyecto" "$CURSO/alumnos"
 
+# ---------------------------------------------------------------------------
+# 5. Accesos directos (Escritorio y carpeta del curso)
+# ---------------------------------------------------------------------------
+# Los crea este script en la Mac (no se descargan), asi que macOS no los bloquea.
+accesos_directos() {
+  local carpeta="$1"
+  mkdir -p "$carpeta" 2>/dev/null || return 1
+  # Terminal ya ubicada en el proyecto: solo falta escribir "claude"
+  cat > "$carpeta/Curso - Terminal.command" <<'TERMINAL' || return 1
+#!/bin/zsh -l
+cd "$HOME/proyecto-python" || exit 1
+clear
+echo "Proyecto del curso. Para empezar escribe:  claude"
+exec /bin/zsh -l
+TERMINAL
+  chmod +x "$carpeta/Curso - Terminal.command"
+  # Los archivos del proyecto en el Finder
+  ln -sfn "$HOME/proyecto-python" "$carpeta/Curso - Archivos del proyecto"
+  # La aplicacion en el navegador
+  cat > "$carpeta/Curso - Mi tablero.webloc" <<'WEBLOC'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict><key>URL</key><string>http://localhost:8000</string></dict></plist>
+WEBLOC
+}
+paso "Creando accesos directos en el Escritorio y en la carpeta del curso..."
+echo "   Si macOS pregunta si la Terminal puede acceder al Escritorio, haz clic en Permitir."
+accesos_directos "$HOME/Desktop" 2>/dev/null || aviso "No se pudieron crear los accesos directos en el Escritorio."
+accesos_directos "$CURSO" 2>/dev/null || aviso "No se pudieron crear los accesos directos en $CURSO."
+
 printf '\n\033[1;32m==================================================================\n'
 printf ' Listo. Tu aplicacion ya se ve en el navegador:  http://localhost:8000\n'
-printf ' Para trabajar abre una Terminal NUEVA y escribe:\n'
-printf '   cd ~/proyecto-python\n'
-printf '   claude\n'
+printf '\n En tu Escritorio quedaron tres accesos directos:\n'
+printf '   Curso - Terminal               abre la Terminal en el proyecto; escribe: claude\n'
+printf '   Curso - Archivos del proyecto  los archivos que va creando Claude\n'
+printf '   Curso - Mi tablero             tu aplicacion en el navegador\n'
 printf ' Los archivos de ejemplo estan en ~/proyecto-python/archivos_ejemplo\n'
 printf '==================================================================\033[0m\n'

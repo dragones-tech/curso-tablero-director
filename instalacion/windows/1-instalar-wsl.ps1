@@ -34,6 +34,18 @@ function Get-WslDistros {
     catch { @() }
 }
 
+# Convierte una ruta de Windows a como la ve Ubuntu (C:\Users\Jose -> /mnt/c/Users/Jose).
+# Se calcula aqui y no con "wslpath": PowerShell 5.1 descompone los acentos al leer
+# la respuesta de Ubuntu (por ejemplo, un usuario "Jose" con acento). Las comillas
+# simples se escapan porque la ruta va dentro de '...' en bash.
+function ConvertTo-WslPath([string]$Ruta) {
+    $completa = [IO.Path]::GetFullPath($Ruta)
+    if ($completa -notmatch '^([A-Za-z]):\\(.*)$') {
+        throw "La carpeta del curso debe estar en un disco de esta computadora (por ejemplo C:), no en una unidad de red: $completa"
+    }
+    ("/mnt/" + $Matches[1].ToLower() + "/" + ($Matches[2] -replace '\\', '/')).TrimEnd('/') -replace "'", "'\''"
+}
+
 function Write-AvisoActualizarWindows {
     Write-Host ""
     Write-Host "AVISO: tu version de Windows no reconoce los comandos nuevos de WSL." -ForegroundColor Yellow
@@ -146,7 +158,7 @@ function Install-Distro {
     if (-not ((Get-WslDistros) -contains $Distro)) { $script:instalado = $false; return }
 
     Write-Host "Creando el usuario del curso en Ubuntu ($LinuxUser)..." -ForegroundColor Cyan
-    $WslPath = (wsl.exe -d $Distro -u root -- wslpath -a ($Here -replace '\\', '/')).Trim()
+    $WslPath = ConvertTo-WslPath $Here
     wsl.exe -d $Distro -u root -- bash -c "sed 's/\r$//' '$WslPath/wsl/crear-usuario.sh' | bash -s -- '$LinuxUser' '$LinuxClave'"
     if ($LASTEXITCODE -ne 0) {
         Write-Host "ERROR: no se pudo crear el usuario de Ubuntu." -ForegroundColor Red
