@@ -99,7 +99,7 @@ if ($build -lt 19041) {
 
 # --- Si Ubuntu ya esta instalado, no hacer nada ---
 if ((Get-WslDistros) -contains $Distro) {
-    Write-Host "$Distro ya esta instalado. Continua con el paso 2: .\2-configurar-docker.ps1" -ForegroundColor Green
+    Write-Host "$Distro ya esta instalado. Sigue con el paso 2." -ForegroundColor Green
     exit 0
 }
 
@@ -125,9 +125,18 @@ function Invoke-Componentes {
 }
 
 function Install-Distro {
+    Write-Host ""
     Write-Host "Instalando $Distro en tu cuenta..." -ForegroundColor Cyan
-    wsl.exe --install -d $Distro --no-launch
-    $script:instalado = ($LASTEXITCODE -eq 0)
+    Write-Host "Al terminar, Ubuntu te pedira crear un usuario en esta misma ventana:" -ForegroundColor Yellow
+    Write-Host "  - 'Enter new UNIX username': un nombre corto, en minusculas, sin espacios" -ForegroundColor Yellow
+    Write-Host "    ni acentos (por ejemplo: maria)." -ForegroundColor Yellow
+    Write-Host "  - 'New password' y 'Retype new password': una contrasena. Al escribirla NO" -ForegroundColor Yellow
+    Write-Host "    aparece nada en pantalla; es normal. Anotala." -ForegroundColor Yellow
+    Write-Host "  - Cuando veas una linea que termina en  `$  escribe  exit  y presiona Enter." -ForegroundColor Yellow
+    Write-Host ""
+    wsl.exe --install -d $Distro
+    # Listo si Ubuntu quedo registrado en esta cuenta (el codigo de salida es el de la shell)
+    $script:instalado = ((Get-WslDistros) -contains $Distro)
 }
 
 # --- Componentes: si WSL ya funciona no hace falta pedir administrador ---
@@ -155,19 +164,19 @@ $instalado = $script:instalado
 Write-Host ""
 Write-Host "==================================================================" -ForegroundColor Green
 if ($instalado) {
-    Write-Host " Siguientes pasos:"
-    Write-Host "  1. Abre 'Ubuntu 24.04' desde el menu Inicio y crea tu usuario/clave."
-    Write-Host "  2. Ejecuta:  .\2-configurar-docker.ps1"
+    Write-Host " Ubuntu quedo instalado con tu usuario."
+    Write-Host " Sigue el paso 2 (si usas instalar-windows, continua solo)."
 } else {
     Write-Host " Falta un reinicio para terminar de activar WSL:"
     Write-Host "  1. REINICIA Windows."
-    Write-Host "  2. Vuelve a ejecutar ESTE paso 1 (instalara Ubuntu)."
+    Write-Host "  2. Vuelve a dar doble clic a instalar-windows (o ejecuta otra vez este paso 1)."
     Write-Host " Si ya reiniciaste y vuelve a salir este mensaje, revisa que la"
     Write-Host " virtualizacion este activada (ver 'Problemas comunes' en la guia)."
 }
 Write-Host "==================================================================" -ForegroundColor Green
 
-if ($codigo -eq 3010 -or -not $instalado) {
-    $r = Read-Host "Reiniciar ahora? (s/n)"
-    if ($r -eq "s") { Restart-Computer }
-}
+if ($instalado) { exit 0 }
+
+$r = Read-Host "Reiniciar ahora? (s/n)"
+if ($r -eq "s") { Restart-Computer }
+exit 3010

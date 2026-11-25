@@ -23,7 +23,7 @@ if (-not ((Get-WslDistros) -contains $Distro)) {
 # Usuario por defecto de Ubuntu (el que se creo al abrirlo por primera vez)
 $LinuxUser = (wsl.exe -d $Distro -- whoami).Trim()
 if ($LinuxUser -eq "root" -or [string]::IsNullOrEmpty($LinuxUser)) {
-    Write-Host "ERROR: Abre 'Ubuntu 24.04' desde el menu Inicio y crea tu usuario antes de continuar." -ForegroundColor Red
+    Write-Host "ERROR: Abre 'Ubuntu 24.04' desde el menu Inicio, crea tu usuario y vuelve a dar doble clic a instalar-windows." -ForegroundColor Red
     exit 1
 }
 

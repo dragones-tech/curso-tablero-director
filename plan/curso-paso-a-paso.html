@@ -384,11 +384,11 @@ table{font-size:13px}th,td{padding:6px 6px 6px 0}
   <div class="num">1<small>Instalación</small></div>
   <div class="body">
     <h2>Instalar Claude Code</h2>
-    <p class="lead">En Windows, dos programas de la carpeta <code>instalacion\windows</code> lo instalan todo. La guía paso a paso está en <code>instalacion/README.md</code>.</p>
+    <p class="lead">En Windows se descarga un solo archivo, <code>instalar-windows.cmd</code>, y se le da doble clic. La guía paso a paso está en <code>instalacion/README.md</code>.</p>
     <ol class="steps">
-      <li><b class="n">1</b><div><h3>Windows: instalar Ubuntu y reiniciar</h3><p>Abrir PowerShell en <code>instalacion\windows</code> (escribir <code>powershell</code> en la barra de direcciones del Explorador) y pegar:</p><pre><code>powershell -ExecutionPolicy Bypass -File .\1-instalar-wsl.ps1</code></pre><p style="margin-top:6px">Aceptar el permiso de administrador (o pedir a sistemas que escriba su clave). Si pide reiniciar, reiniciar y volver a ejecutarlo.</p></div></li>
-      <li><b class="n">2</b><div><h3>Windows: crear el usuario de Ubuntu</h3><p>Abrir <b>Ubuntu 24.04</b> desde el menú Inicio y crear usuario y contraseña. Al escribir la contraseña no aparece nada en pantalla: es normal.</p></div></li>
-      <li><b class="n">3</b><div><h3>Windows: instalar todo lo demás</h3><p>De nuevo en PowerShell, en la misma carpeta:</p><pre><code>powershell -ExecutionPolicy Bypass -File .\2-configurar-docker.ps1</code></pre><p style="margin-top:6px">Instala Git, Docker, Claude Code y herdr, los actualiza y prepara el proyecto. Termina con un mensaje verde: <b>Listo</b>.</p></div></li>
+      <li><b class="n">1</b><div><h3>Windows: descargar y dar doble clic</h3><p>Descargar <code>instalar-windows.cmd</code> y abrirlo con doble clic. Si el navegador avisa, elegir <b>Conservar</b>; si aparece "Windows protegió su PC", <b>Más información → Ejecutar de todas formas</b>.</p></div></li>
+      <li><b class="n">2</b><div><h3>Windows: aceptar y, si lo pide, reiniciar</h3><p>Aceptar el permiso de administrador (o pedir a sistemas que escriba su clave). Si pide reiniciar, reiniciar y dar doble clic otra vez al mismo archivo: sigue donde se quedó.</p></div></li>
+      <li><b class="n">3</b><div><h3>Windows: crear el usuario de Ubuntu y esperar</h3><p>En la misma ventana se crea usuario y contraseña de Ubuntu (al escribir la contraseña no aparece nada: es normal) y luego se escribe <code>exit</code>. Después instala solo Git, Docker, Claude Code y herdr y prepara el proyecto. Termina con un mensaje verde: <b>Listo</b>.</p></div></li>
       <li><b class="n">·</b><div><h3>Mac</h3><p>Un solo programa, sin Homebrew ni administrador. En la Terminal escribir <code>bash</code> y un espacio, arrastrar a la ventana el archivo <code>instalacion/mac/instalar-mac.sh</code> y presionar Enter. Instala las herramientas de Apple (Git), Rancher Desktop (Docker), Claude Code y herdr. Guía: <code>instalacion/mac/README.md</code>.</p></div></li>
     </ol>
   </div>

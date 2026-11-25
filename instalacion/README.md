@@ -2,7 +2,7 @@
 
 > 🍎 **¿Tienes Mac?** Sigue la [guía de instalación para Mac](mac/README.md).
 
-Esta guía explica cómo dejar tu computadora con Windows lista **antes del curso**. No hace falta saber programar: solo hay que seguir los pasos en orden y copiar y pegar algunos comandos.
+Esta guía explica cómo dejar tu computadora con Windows lista **antes del curso**. No hace falta saber programar: todo se instala con **doble clic en un solo archivo**.
 
 **Tiempo aproximado:** 30 a 60 minutos (casi todo es esperar descargas). Puede haber un reinicio a mitad del proceso.
 
@@ -36,56 +36,23 @@ Revisa que tengas todo esto:
   - **GitHub** (gratuita) en [github.com](https://github.com/signup): ahí se guarda tu trabajo.
   - **DigitalOcean** en [digitalocean.com](https://www.digitalocean.com): ahí se publica tu tablero. Pide una tarjeta; el costo mensual es bajo y se puede apagar en cualquier momento.
 - [ ] **Tus propios reportes** de 2 o 3 áreas en Excel (o una versión sin datos confidenciales), para aplicar lo aprendido a tu caso. No se usan en la instalación.
-- [ ] **La carpeta del curso** descomprimida en un lugar fácil de encontrar, por ejemplo `Documentos\cursoSEDU`.
-  Si te llegó como `.zip`: clic derecho → **Extraer todo**.
 
 ---
 
 ## Instalación en Windows
 
-### Cómo abrir PowerShell en la carpeta de instalación
+### Paso 1: Descargar y ejecutar el instalador
 
-Vas a necesitar esto en los pasos 1 y 3:
-
-1. En el Explorador de archivos, entra a la carpeta del curso y luego a **`instalacion`** → **`windows`**. Ahí están los archivos `1-instalar-wsl.ps1` y `2-configurar-docker.ps1`.
-2. Haz clic en la **barra de direcciones** de arriba (donde aparece la ruta de la carpeta), borra lo que haya, escribe `powershell` y presiona **Enter**.
-3. Se abre una ventana azul o negra. Esa es PowerShell, ya ubicada en la carpeta correcta.
-
-> **Para pegar un comando** en PowerShell: cópialo de esta guía y haz **clic derecho** dentro de la ventana (o presiona `Ctrl + V`). Después presiona **Enter**.
-
----
-
-### Paso 1: Instalar Ubuntu (WSL)
-
-1. Abre PowerShell en la carpeta `instalacion\windows` (ver arriba).
-2. Pega este comando y presiona Enter:
-
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\1-instalar-wsl.ps1
-   ```
-
-3. Windows te preguntará: *"¿Quieres permitir que esta aplicación haga cambios?"*. Responde **Sí**.
-   - Si tu cuenta **no es de administrador**, Windows te pedirá el usuario y la contraseña de un administrador. Puede escribirlos alguien de tu área de sistemas; la instalación de Ubuntu queda de todos modos en **tu** cuenta.
-   - Se abre una segunda ventana que trabaja sola y **se cierra sola** al terminar. Después todo sigue en la primera ventana.
-4. Espera a que termine. Puede tardar varios minutos y mostrar barras de progreso.
-5. Al final el mensaje verde te dice qué sigue:
-   - **"Falta un reinicio..."**: responde `s` para reiniciar y, al volver, **ejecuta este paso 1 otra vez** (esta vez instala Ubuntu y ya no pide administrador).
-   - **"Siguientes pasos: Abre Ubuntu 24.04..."**: pasa al paso 2.
-
-> ⚠️ Abre PowerShell de la forma normal, **no** con "Ejecutar como administrador": el script pide el permiso solo cuando lo necesita.
-
-✅ **Listo cuando:** el mensaje verde dice *"Siguientes pasos: Abre 'Ubuntu 24.04'..."*.
-
-> Si el mensaje dice *"Ubuntu-24.04 ya esta instalado"*, ya tenías este paso hecho: pasa directo al paso 3.
-
----
-
-### Paso 2: Crear tu usuario de Ubuntu
-
-1. Abre el menú Inicio, busca **Ubuntu 24.04** y ábrelo.
-   (Si después de un reinicio se abrió una ventana negra solita, usa esa.)
-2. Espera mientras dice *"Installing, this may take a few minutes..."*.
-3. Te pedirá:
+1. **Descarga el instalador:** [**instalar-windows.cmd**](https://github.com/dragones-tech/curso-tablero-director/releases/latest/download/instalar-windows.cmd)
+   - Es posible que el navegador avise que *"este tipo de archivo puede dañar tu dispositivo"* o que *"no se descarga normalmente"*. Elige **Conservar** (en Edge, primero haz clic en los **tres puntos** `···` junto al aviso).
+2. Abre la carpeta **Descargas** y haz **doble clic** en `instalar-windows`.
+3. Si aparece una ventana azul que dice **"Windows protegió su PC"**: haz clic en **Más información** y luego en **Ejecutar de todas formas**.
+4. Se abre una ventana negra que baja los materiales del curso y empieza a instalar. **No la cierres**: ella te dirá qué hacer.
+5. Windows te preguntará: *"¿Quieres permitir que esta aplicación haga cambios?"*. Responde **Sí**.
+   - Si tu cuenta **no es de administrador**, Windows te pedirá el usuario y la contraseña de un administrador. Puede escribirlos alguien de tu área de sistemas; la instalación queda de todos modos en **tu** cuenta.
+   - Se abre una segunda ventana que trabaja sola y **se cierra sola**. Después todo sigue en la primera.
+6. **Si te pide reiniciar** (*"Falta un reinicio..."*): escribe `s` y presiona Enter. Cuando Windows vuelva a encender, **haz doble clic otra vez en `instalar-windows`** (sigue en Descargas). Continúa donde se quedó.
+7. **Crea tu usuario de Ubuntu.** En la misma ventana te pedirá:
    - **`Enter new UNIX username:`** escribe un nombre de usuario **corto, en minúsculas, sin espacios ni acentos** (ejemplo: `maria`) y presiona Enter.
    - **`New password:`** escribe una contraseña y presiona Enter.
    - **`Retype new password:`** escríbela otra vez.
@@ -94,38 +61,40 @@ Vas a necesitar esto en los pasos 1 y 3:
    >
    > 📝 **Anota tu usuario y contraseña.** Te los pueden pedir más adelante.
 
-4. Cuando veas algo como `maria@NOMBRE-PC:~$`, ya terminó. Puedes cerrar esa ventana.
+8. Cuando veas una línea parecida a `maria@NOMBRE-PC:~$`, escribe `exit` y presiona **Enter**. La instalación sigue sola.
+9. Espera. Esta es la parte más larga (10 a 30 minutos) y vas a ver mucho texto pasar; es normal. Se instalan Git, Docker, Claude Code y herdr, y se copia el proyecto del curso con los archivos de ejemplo a Ubuntu (carpeta `~/proyecto-python`).
+10. Al final aparece un recuadro verde que empieza con **"Listo."**
+11. Abre en tu navegador **<http://localhost:8000>**. Debe decir *"El entorno del curso funciona"* y mostrar la lista de archivos de ejemplo.
 
-✅ **Listo cuando:** ves la línea que termina en `$`.
+✅ **Listo cuando:** ves el mensaje verde **"Listo."** y la página <http://localhost:8000> abre.
 
-> Si **Ubuntu 24.04** no aparece en el menú Inicio, abre PowerShell y ejecuta `wsl --install -d Ubuntu-24.04`. Luego sigue desde el punto 2.
+> Si aparece un mensaje en **rojo**, léelo y revisa la sección [Problemas comunes](#problemas-comunes). Puedes volver a dar doble clic a `instalar-windows` las veces que haga falta: lo que ya está instalado no se repite.
+>
+> Los materiales del curso quedan en tu carpeta de usuario: `C:\Users\<tu usuario>\curso-tablero-director`.
 
----
+<details>
+<summary><b>Alternativa: instalar desde PowerShell, paso por paso</b> (si el doble clic no funciona)</summary>
 
-### Paso 3: Instalar Docker, Git, Claude Code y el proyecto
+1. Descarga el curso completo desde [la página del curso en GitHub](https://github.com/dragones-tech/curso-tablero-director) (**Code → Download ZIP**), haz clic derecho en el `.zip` → **Extraer todo**.
+2. Si en la carpeta extraída das doble clic a `instalar-windows`, usa esos archivos en lugar de descargarlos. Si prefieres hacerlo a mano:
+3. Entra a **`instalacion`** → **`windows`**, haz clic en la **barra de direcciones** del Explorador, escribe `powershell` y presiona **Enter** (en Windows 11 también sirve clic derecho → **Abrir en Terminal**).
+4. Pega este comando (clic derecho para pegar) y presiona Enter. Sigue las indicaciones de los puntos 5 a 8 de arriba:
 
-1. Abre PowerShell en la carpeta `instalacion\windows` otra vez (esta vez **no** hace falta como administrador).
-2. Pega este comando y presiona Enter:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File .\1-instalar-wsl.ps1
+   ```
+
+5. Después pega este otro y espera el mensaje **"Listo."**:
 
    ```powershell
    powershell -ExecutionPolicy Bypass -File .\2-configurar-docker.ps1
    ```
 
-3. Espera. Este es el paso más largo (10 a 30 minutos). Vas a ver mucho texto pasar; es normal. El script:
-   - instala Git y Docker,
-   - instala Claude Code y herdr y los actualiza a la última versión,
-   - copia el proyecto del curso y los archivos de ejemplo a Ubuntu (carpeta `~/proyecto-python`),
-   - arranca la aplicación del curso.
-4. Al final aparece un recuadro verde que empieza con **"Listo."**
-5. Abre en tu navegador **<http://localhost:8000>**. Debe decir *"El entorno del curso funciona"* y mostrar la lista de archivos de ejemplo.
-
-✅ **Listo cuando:** ves el mensaje verde **"Listo."** y la página <http://localhost:8000> abre.
-
-> Si aparece un mensaje en **rojo** que empieza con *"Fallo..."*, revisa la sección [Problemas comunes](#problemas-comunes). Puedes volver a ejecutar este paso sin riesgo: lo que ya está instalado no se repite.
+</details>
 
 ---
 
-### Paso 4: Conectar Claude Code con tu cuenta
+### Paso 2: Conectar Claude Code con tu cuenta
 
 Este paso se hace una sola vez.
 
@@ -178,7 +147,7 @@ Cada vez que quieras trabajar:
 <details>
 <summary><b>"No se puede cargar el archivo... la ejecución de scripts está deshabilitada"</b></summary>
 
-Asegúrate de copiar el comando **completo**, incluyendo `-ExecutionPolicy Bypass`. No hagas doble clic en el archivo `.ps1`: usa el comando de esta guía.
+Usa el archivo `instalar-windows` con doble clic. Si estás siguiendo la alternativa de PowerShell, copia el comando **completo**, incluyendo `-ExecutionPolicy Bypass`.
 </details>
 
 <details>
@@ -192,37 +161,37 @@ Para revisar si ya está activa: `Ctrl + Shift + Esc` → pestaña **Rendimiento
 <details>
 <summary><b>"Se requiere Windows 10 version 2004 o superior" o "tu version de Windows no reconoce los comandos nuevos de WSL"</b></summary>
 
-Actualiza Windows desde **Configuración → Windows Update** e instala **todas** las actualizaciones (pueden ser varias rondas). Reinicia y vuelve a ejecutar el paso 1.
+Actualiza Windows desde **Configuración → Windows Update** e instala **todas** las actualizaciones (pueden ser varias rondas). Reinicia y vuelve a dar doble clic a `instalar-windows`.
 </details>
 
 <details>
 <summary><b>"no se dio el permiso de administrador"</b></summary>
 
-Respondiste "No" a la ventana de permiso, o no se escribió la clave de un administrador. Vuelve a ejecutar el paso 1 y responde **Sí**. Si no tienes clave de administrador, pide ayuda a tu área de sistemas.
+Respondiste "No" a la ventana de permiso, o no se escribió la clave de un administrador. Vuelve a dar doble clic a `instalar-windows` y responde **Sí**. Si no tienes clave de administrador, pide ayuda a tu área de sistemas.
 </details>
 
 <details>
 <summary><b>"ERROR: Abre 'Ubuntu 24.04' desde el menu Inicio y crea tu usuario"</b></summary>
 
-Te saltaste el paso 2. Hazlo y luego repite el paso 3.
+No se creó el usuario de Ubuntu. Abre **Ubuntu 24.04** desde el menú Inicio, crea tu usuario (punto 7 del paso 1) y vuelve a dar doble clic a `instalar-windows`.
 </details>
 
 <details>
 <summary><b>"ERROR: Ubuntu-24.04 no esta instalado"</b></summary>
 
-Repite el paso 1 y reinicia la computadora.
+Vuelve a dar doble clic a `instalar-windows` y, si lo pide, reinicia.
 </details>
 
 <details>
 <summary><b>"claude: command not found" o "herdr: command not found"</b></summary>
 
-Cierra la ventana de Ubuntu y ábrela de nuevo. Si sigue igual, repite el paso 3.
+Cierra la ventana de Ubuntu y ábrela de nuevo. Si sigue igual, vuelve a dar doble clic a `instalar-windows`.
 </details>
 
 <details>
 <summary><b>Se quedó detenido mucho tiempo sin avanzar</b></summary>
 
-Algunas descargas tardan. Si pasan más de 20 minutos sin cambios, cierra la ventana, reinicia la computadora y repite el paso donde te quedaste. Los scripts se pueden ejecutar varias veces sin problema.
+Algunas descargas tardan. Si pasan más de 20 minutos sin cambios, cierra la ventana, reinicia la computadora y vuelve a dar doble clic a `instalar-windows`. Se puede ejecutar varias veces sin problema.
 </details>
 
 <details>
