@@ -1,0 +1,8 @@
+# Librerias de Python del curso. Para agregar una: escribela aqui y ejecuta
+#   docker compose up -d --build
+fastapi>=0.115
+uvicorn[standard]>=0.30
+jinja2>=3.1
+python-multipart>=0.0.9   # subir archivos (Unidad 2)
+pandas>=2.2
+openpyxl>=3.1             # leer y escribir Excel

@@ -1,0 +1,5 @@
+Archivos de ejemplo — El tablero del director (6 horas)
+Organización Ejemplo es ficticia. Todos los cálculos se hacen con fecha de corte:
+domingo 15 de noviembre de 2026 (nunca con la fecha de hoy).
+No corrijas los archivos a mano: algunos traen errores a propósito.
+Las reglas y los resultados esperados están en el temario práctico.

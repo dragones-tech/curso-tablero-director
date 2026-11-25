@@ -1,0 +1,80 @@
+folio,fecha,tipo,area,descripcion,gravedad,fecha_cierre
+IQ-0001,2026-09-01,Queja,Atención a clientes,Entrega incompleta,Media,2026-09-04
+IQ-0002,2026-09-01,Incidente,Operaciones,Falla del sistema de pedidos,Baja,2026-09-04
+IQ-0003,2026-09-04,Incidente,Calidad,Unidad de reparto descompuesta,Baja,2026-09-05
+IQ-0004,2026-09-04,Queja,Atención a clientes,Pedido con retraso,Media,2026-09-05
+IQ-0005,2026-09-05,Queja,Atención a clientes,Producto dañado,Media,2026-09-05
+IQ-0006,2026-09-07,Incidente,Logística,Corte de energía en planta,Baja,2026-09-11
+IQ-0007,2026-09-08,Queja,Logística,Producto dañado,Alta,2026-09-12
+IQ-0008,2026-09-08,Queja,Atención a clientes,Factura con error,Baja,2026-09-14
+IQ-0009,2026-09-09,Incidente,Sistemas,Accidente menor en almacén,Baja,2026-09-10
+IQ-0010,2026-09-10,Incidente,Operaciones,Falla del sistema de pedidos,Baja,2026-09-11
+IQ-0011,2026-09-11,Queja,Comercial,Cambio de pedido no aplicado,Baja,2026-09-13
+IQ-0012,2026-09-14,Queja,Atención a clientes,Cambio de pedido no aplicado,Media,2026-09-23
+IQ-0013,2026-09-14,Queja,Comercial,Entrega incompleta,Baja,2026-09-17
+IQ-0014,2026-09-15,Incidente,Sistemas,Lote retenido por calidad,Alta,2026-09-15
+IQ-0015,2026-09-15,Queja,Atención a clientes,Factura con error,Baja,2026-09-24
+IQ-0016,2026-09-15,Incidente,Logística,Corte de energía en planta,Media,2026-09-15
+IQ-0017,2026-09-16,Queja,Atención a clientes,Cambio de pedido no aplicado,Baja,2026-09-25
+IQ-0018,2026-09-16,Incidente,Sistemas,Lote retenido por calidad,Baja,2026-09-19
+IQ-0019,2026-09-17,Queja,Logística,Factura con error,Media,2026-09-18
+IQ-0020,2026-09-18,Queja,Logística,Pedido con retraso,Media,2026-09-19
+IQ-0021,2026-09-18,Queja,Atención a clientes,Entrega incompleta,Baja,2026-09-27
+IQ-0022,2026-09-20,Queja,Atención a clientes,Producto dañado,Media,2026-09-21
+IQ-0023,2026-09-21,Queja,Comercial,Producto dañado,Alta,2026-09-22
+IQ-0024,2026-09-21,Queja,Atención a clientes,Factura con error,Baja,2026-09-25
+IQ-0025,2026-09-22,Incidente,Operaciones,Unidad de reparto descompuesta,Baja,2026-10-01
+IQ-0026,2026-09-22,Incidente,Logística,Caída del correo,Baja,2026-09-25
+IQ-0027,2026-09-23,Queja,Atención a clientes,Pedido con retraso,Media,2026-09-24
+IQ-0028,2026-09-24,Incidente,Sistemas,Unidad de reparto descompuesta,Media,2026-09-27
+IQ-0029,2026-09-25,Queja,Logística,Cambio de pedido no aplicado,Media,2026-09-27
+IQ-0030,2026-09-27,Queja,Logística,Entrega incompleta,Media,2026-09-28
+IQ-0031,2026-09-28,Incidente,Operaciones,Falla del sistema de pedidos,Baja,2026-09-30
+IQ-0032,2026-09-28,Incidente,Logística,Lote retenido por calidad,Baja,2026-10-07
+IQ-0033,2026-09-30,Queja,Atención a clientes,Entrega incompleta,Media,2026-10-02
+IQ-0034,2026-09-30,Queja,Atención a clientes,Factura con error,Baja,2026-10-03
+IQ-0035,2026-09-30,Queja,Logística,Pedido con retraso,Alta,2026-09-30
+IQ-0036,2026-10-02,Incidente,Calidad,Accidente menor en almacén,Media,2026-10-02
+IQ-0037,2026-10-05,Queja,Atención a clientes,Falta de respuesta del ejecutivo,Baja,2026-10-07
+IQ-0038,2026-10-05,Queja,Logística,Producto dañado,Baja,2026-10-06
+IQ-0039,2026-10-06,Queja,Logística,Entrega incompleta,Media,2026-10-08
+IQ-0040,2026-10-08,Queja,Logística,Factura con error,Baja,2026-10-10
+IQ-0041,2026-10-09,Queja,Logística,Producto dañado,Baja,2026-10-11
+IQ-0042,2026-10-12,Incidente,Operaciones,Lote retenido por calidad,Baja,2026-10-13
+IQ-0043,2026-10-12,Queja,Logística,Factura con error,Baja,2026-10-14
+IQ-0044,2026-10-13,Queja,Atención a clientes,Falta de respuesta del ejecutivo,Baja,2026-10-17
+IQ-0045,2026-10-14,Queja,Atención a clientes,Cambio de pedido no aplicado,Media,2026-10-20
+IQ-0046,2026-10-14,Incidente,Calidad,Unidad de reparto descompuesta,Baja,2026-10-17
+IQ-0047,2026-10-15,Queja,Atención a clientes,Falta de respuesta del ejecutivo,Media,2026-10-16
+IQ-0048,2026-10-15,Queja,Comercial,Producto dañado,Media,2026-10-21
+IQ-0049,2026-10-16,Incidente,Operaciones,Caída del correo,Media,2026-10-18
+IQ-0050,2026-10-19,Incidente,Operaciones,Corte de energía en planta,Alta,2026-10-25
+IQ-0051,2026-10-20,Queja,Logística,Cambio de pedido no aplicado,Baja,2026-10-29
+IQ-0052,2026-10-21,Queja,Comercial,Cambio de pedido no aplicado,Baja,2026-10-23
+IQ-0053,2026-10-21,Incidente,Calidad,Caída del correo,Media,2026-10-24
+IQ-0054,2026-10-22,Incidente,Sistemas,Falla del sistema de pedidos,Media,2026-10-23
+IQ-0055,2026-10-22,Queja,Logística,Factura con error,Media,2026-10-28
+IQ-0056,2026-10-23,Queja,Atención a clientes,Falta de respuesta del ejecutivo,Baja,2026-10-27
+IQ-0057,2026-10-23,Incidente,Calidad,Caída del correo,Baja,2026-10-25
+IQ-0058,2026-10-26,Incidente,Operaciones,Corte de energía en planta,Alta,2026-11-04
+IQ-0059,2026-10-26,Queja,Logística,Cambio de pedido no aplicado,Baja,2026-10-28
+IQ-0060,2026-10-27,Incidente,Operaciones,Unidad de reparto descompuesta,Baja,2026-10-29
+IQ-0061,2026-10-27,Incidente,Calidad,Accidente menor en almacén,Media,2026-10-30
+IQ-0062,2026-10-28,Incidente,Sistemas,Accidente menor en almacén,Media,2026-10-29
+IQ-0063,2026-10-29,Incidente,Operaciones,Caída del correo,Media,2026-10-31
+IQ-0064,2026-10-30,Queja,Comercial,Cambio de pedido no aplicado,Baja,2026-11-05
+IQ-0065,2026-11-02,Queja,Comercial,Entrega incompleta,Baja,2026-11-06
+IQ-0066,2026-11-03,Queja,Atención a clientes,Entrega incompleta,Baja,2026-11-05
+IQ-0067,2026-11-03,Queja,Atención a clientes,Pedido con retraso,Baja,2026-11-04
+IQ-0068,2026-11-04,Queja,Atención a clientes,Cambio de pedido no aplicado,Alta,2026-11-06
+IQ-0069,2026-11-04,Queja,Comercial,Producto dañado,Media,2026-11-10
+IQ-0070,2026-11-06,Incidente,Operaciones,Accidente menor en almacén,Media,2026-11-07
+IQ-0071,2026-11-08,Incidente,Logística,Falla del sistema de pedidos,Baja,2026-11-09
+IQ-0072,2026-11-09,Queja,Atención a clientes,Producto dañado,Baja,2026-11-11
+IQ-0073,2026-11-10,Incidente,Logística,Lote retenido por calidad,Baja,2026-11-10
+IQ-0074,2026-11-10,Incidente,Logística,Corte de energía en planta,Alta,2026-11-11
+IQ-0075,2026-11-11,Queja,Atención a clientes,Factura con error,Baja,2026-11-12
+IQ-0076,2026-11-11,Queja,Logística,Falta de respuesta del ejecutivo,Baja,
+IQ-0077,2026-11-12,Queja,Atención a clientes,Entrega incompleta,Baja,2026-11-13
+IQ-0078,2026-11-12,Queja,Atención a clientes,Cambio de pedido no aplicado,Alta,
+IQ-0079,2026-11-13,Incidente,Sistemas,Lote retenido por calidad,Baja,

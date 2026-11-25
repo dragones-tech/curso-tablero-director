@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    image: curso-python
+    working_dir: /app
+    environment:
+      DB_PATH: /data/curso.db
+      ARCHIVOS_DIR: /archivos_ejemplo
+    ports:
+      - "8000:8000"                          # http://localhost:8000
+    volumes:
+      - ./app:/app                           # el codigo se edita en vivo desde fuera del contenedor
+      - ./data:/data                         # la base SQLite persiste aqui
+      - ./archivos_ejemplo:/archivos_ejemplo:ro  # archivos del curso (solo lectura)
+    restart: unless-stopped                  # arranca solo al abrir Ubuntu
