@@ -52,19 +52,9 @@ Revisa que tengas todo esto:
    - Si tu cuenta **no es de administrador**, Windows te pedirá el usuario y la contraseña de un administrador. Puede escribirlos alguien de tu área de sistemas; la instalación queda de todos modos en **tu** cuenta.
    - Se abre una segunda ventana que trabaja sola y **se cierra sola**. Después todo sigue en la primera.
 6. **Si te pide reiniciar** (*"Falta un reinicio..."*): escribe `s` y presiona Enter. Cuando Windows vuelva a encender, **haz doble clic otra vez en `instalar-windows`** (sigue en Descargas). Continúa donde se quedó.
-7. **Crea tu usuario de Ubuntu.** En la misma ventana te pedirá:
-   - **`Enter new UNIX username:`** escribe un nombre de usuario **corto, en minúsculas, sin espacios ni acentos** (ejemplo: `maria`) y presiona Enter.
-   - **`New password:`** escribe una contraseña y presiona Enter.
-   - **`Retype new password:`** escríbela otra vez.
-
-   > ⚠️ **Mientras escribes la contraseña no aparece nada en pantalla**, ni puntos ni asteriscos. Es normal: sí se está escribiendo.
-   >
-   > 📝 **Anota tu usuario y contraseña.** Te los pueden pedir más adelante.
-
-8. Cuando veas una línea parecida a `maria@NOMBRE-PC:~$`, escribe `exit` y presiona **Enter**. La instalación sigue sola.
-9. Espera. Esta es la parte más larga (10 a 30 minutos) y vas a ver mucho texto pasar; es normal. Se instalan Git, Docker, Claude Code y herdr, y se copia el proyecto del curso con los archivos de ejemplo a Ubuntu (carpeta `~/proyecto-python`).
-10. Al final aparece un recuadro verde que empieza con **"Listo."**
-11. Abre en tu navegador **<http://localhost:8000>**. Debe decir *"El entorno del curso funciona"* y mostrar la lista de archivos de ejemplo.
+7. Espera. Esta es la parte más larga (10 a 30 minutos) y vas a ver mucho texto pasar; es normal. Se instalan Git, Docker, Claude Code y herdr, y se copia el proyecto del curso con los archivos de ejemplo a Ubuntu (carpeta `~/proyecto-python`).
+8. Al final aparece un recuadro verde que empieza con **"Listo."**
+9. Abre en tu navegador **<http://localhost:8000>**. Debe decir *"El entorno del curso funciona"* y mostrar la lista de archivos de ejemplo.
 
 ✅ **Listo cuando:** ves el mensaje verde **"Listo."** y la página <http://localhost:8000> abre.
 
@@ -72,13 +62,17 @@ Revisa que tengas todo esto:
 >
 > Los materiales del curso quedan en tu carpeta de usuario: `C:\Users\<tu usuario>\curso-tablero-director`.
 
+> 🔑 **Tu usuario de Ubuntu ya está creado:** usuario **`alumno`**, contraseña **`curso2026`**. Es igual para todos los participantes; no tienes que inventar uno. La contraseña solo se pide si alguna vez instalas algo dentro de Ubuntu (y, al escribirla, no aparece nada en pantalla: es normal).
+>
+> Si al abrir **Ubuntu 24.04** alguna vez te pide crear un usuario (*"Enter new UNIX username"*), escribe `alumno` y, como contraseña, `curso2026` dos veces.
+
 <details>
 <summary><b>Alternativa: instalar desde PowerShell, paso por paso</b> (si el doble clic no funciona)</summary>
 
 1. Descarga el curso completo desde [la página del curso en GitHub](https://github.com/dragones-tech/curso-tablero-director) (**Code → Download ZIP**), haz clic derecho en el `.zip` → **Extraer todo**.
 2. Si en la carpeta extraída das doble clic a `instalar-windows`, usa esos archivos en lugar de descargarlos. Si prefieres hacerlo a mano:
 3. Entra a **`instalacion`** → **`windows`**, haz clic en la **barra de direcciones** del Explorador, escribe `powershell` y presiona **Enter** (en Windows 11 también sirve clic derecho → **Abrir en Terminal**).
-4. Pega este comando (clic derecho para pegar) y presiona Enter. Sigue las indicaciones de los puntos 5 a 8 de arriba:
+4. Pega este comando (clic derecho para pegar) y presiona Enter. Sigue las indicaciones de los puntos 5 y 6 de arriba:
 
    ```powershell
    powershell -ExecutionPolicy Bypass -File .\1-instalar-wsl.ps1
@@ -171,9 +165,9 @@ Respondiste "No" a la ventana de permiso, o no se escribió la clave de un admin
 </details>
 
 <details>
-<summary><b>"ERROR: Abre 'Ubuntu 24.04' desde el menu Inicio y crea tu usuario"</b></summary>
+<summary><b>"ERROR: Ubuntu no tiene el usuario del curso"</b></summary>
 
-No se creó el usuario de Ubuntu. Abre **Ubuntu 24.04** desde el menú Inicio, crea tu usuario (punto 7 del paso 1) y vuelve a dar doble clic a `instalar-windows`.
+No se creó el usuario de Ubuntu. Vuelve a dar doble clic a `instalar-windows`. Si sigue igual, avisa al instructor.
 </details>
 
 <details>

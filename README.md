@@ -27,5 +27,5 @@ curso-tablero-director/
 
 ## Pasos para participantes
 
-1. **Antes del curso:** sigue la guía de instalación para [Windows](instalacion/README.md) (descargas [`instalar-windows.cmd`](https://github.com/dragones-tech/curso-tablero-director/releases/latest/download/instalar-windows.cmd) y le das doble clic) o para [Mac](instalacion/mac/README.md).
+1. **Antes del curso:** sigue la guía de instalación para [Windows](instalacion/README.md) (descargas [`instalar-windows.cmd`](https://github.com/dragones-tech/curso-tablero-director/releases/latest/download/instalar-windows.cmd) y le das doble clic) o para [Mac](instalacion/mac/README.md) (pegas una línea en la Terminal).
 2. **El día del curso:** abre Ubuntu, `cd ~/proyecto-python` y `claude`. La instalación ya copió ahí los archivos de `alumnos/` (en `archivos_ejemplo/`).

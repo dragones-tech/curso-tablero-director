@@ -2,8 +2,11 @@
 # Instalacion del curso en macOS 13 (Ventura) o mas reciente, Apple Silicon (M) o Intel.
 # No necesita Homebrew ni contrasena de administrador.
 #
-# Uso: en la app Terminal escribe  bash  y un espacio, arrastra este archivo a la
-# ventana y presiona Enter.
+# Uso (en la app Terminal, una sola linea):
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/dragones-tech/curso-tablero-director/main/instalacion/mac/instalar-mac.sh)"
+# Asi se descarga solo: baja los materiales del curso a ~/curso-tablero-director
+# y sigue desde ahi. Si ya tienes la carpeta del curso, tambien sirve:
+#   bash <carpeta del curso>/instalacion/mac/instalar-mac.sh
 #
 # Instala: Command Line Tools de Apple (trae Git), Rancher Desktop (Docker Engine
 # de Linux, gratuito), Claude Code y herdr. Despues copia el proyecto a
@@ -13,18 +16,39 @@
 # Compatible con el bash 3.2 que trae macOS.
 set -euo pipefail
 
-AQUI="$(cd "$(dirname "$0")" && pwd)"
-INSTALACION="$(dirname "$AQUI")"
-CURSO="$(dirname "$INSTALACION")"
-
 paso()  { printf '\n\033[1;36m>> %s\033[0m\n' "$*"; }
 aviso() { printf '\033[1;33m>> AVISO: %s\033[0m\n' "$*"; }
 error() { printf '\n\033[1;31m>> ERROR: %s\033[0m\n' "$*"; exit 1; }
 
+[ "$(uname)" = "Darwin" ] || error "Este script es solo para Mac."
+
+# ---------------------------------------------------------------------------
+# Materiales del curso: si este script no esta dentro de la carpeta del curso
+# (por ejemplo, porque se pego la linea con curl), se descargan y se continua
+# desde la copia descargada.
+# ---------------------------------------------------------------------------
+AQUI="$(cd "$(dirname "$0")" 2>/dev/null && pwd || pwd)"
+if [ ! -f "$AQUI/../comun/setup-claude.sh" ]; then
+  CURSO_DESTINO="$HOME/curso-tablero-director"
+  paso "Descargando los materiales del curso a $CURSO_DESTINO ..."
+  TMPC="$(mktemp -d)"
+  curl -fL --progress-bar -o "$TMPC/curso.zip" \
+    https://github.com/dragones-tech/curso-tablero-director/archive/refs/heads/main.zip \
+    || error "No se pudieron descargar los materiales del curso. Revisa tu conexion a internet y vuelve a pegar la linea."
+  ditto -x -k "$TMPC/curso.zip" "$TMPC/x"
+  ORIGEN_CURSO="$(find "$TMPC/x" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+  [ -n "$ORIGEN_CURSO" ] || error "La descarga de los materiales del curso llego vacia. Vuelve a pegar la linea."
+  mkdir -p "$CURSO_DESTINO"
+  ditto "$ORIGEN_CURSO" "$CURSO_DESTINO"   # copia encima: actualiza sin borrar nada
+  rm -rf "$TMPC"
+  exec bash "$CURSO_DESTINO/instalacion/mac/instalar-mac.sh"
+fi
+INSTALACION="$(cd "$AQUI/.." && pwd)"
+CURSO="$(dirname "$INSTALACION")"
+
 # ---------------------------------------------------------------------------
 # 0. Revisar la computadora
 # ---------------------------------------------------------------------------
-[ "$(uname)" = "Darwin" ] || error "Este script es solo para Mac."
 
 VERSION_MAC="$(sw_vers -productVersion)"
 if [ "${VERSION_MAC%%.*}" -lt 13 ]; then

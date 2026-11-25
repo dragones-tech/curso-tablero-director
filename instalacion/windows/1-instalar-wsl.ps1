@@ -8,6 +8,9 @@
   abre una ventana elevada para eso y Windows pide permiso (o la clave de un
   administrador). Ubuntu se instala despues en la cuenta normal, porque cada
   distribucion de WSL queda registrada para el usuario de Windows que la instala.
+
+  Ubuntu queda con el usuario generico del curso ($LinuxUser / $LinuxClave, abajo):
+  nadie tiene que crear usuario ni escribir contrasenas durante la instalacion.
 #>
 param(
     # Uso interno: lo pasa el propio script a la ventana de administrador
@@ -16,6 +19,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 $Distro = "Ubuntu-24.04"
+$LinuxUser  = "alumno"
+$LinuxClave = "curso2026"   # solo para sudo dentro de Ubuntu (ver wsl/crear-usuario.sh)
+$Here = Split-Path -Parent $PSCommandPath
 
 function Test-Admin {
     ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
@@ -127,16 +133,30 @@ function Invoke-Componentes {
 function Install-Distro {
     Write-Host ""
     Write-Host "Instalando $Distro en tu cuenta..." -ForegroundColor Cyan
-    Write-Host "Al terminar, Ubuntu te pedira crear un usuario en esta misma ventana:" -ForegroundColor Yellow
-    Write-Host "  - 'Enter new UNIX username': un nombre corto, en minusculas, sin espacios" -ForegroundColor Yellow
-    Write-Host "    ni acentos (por ejemplo: maria)." -ForegroundColor Yellow
-    Write-Host "  - 'New password' y 'Retype new password': una contrasena. Al escribirla NO" -ForegroundColor Yellow
-    Write-Host "    aparece nada en pantalla; es normal. Anotala." -ForegroundColor Yellow
-    Write-Host "  - Cuando veas una linea que termina en  `$  escribe  exit  y presiona Enter." -ForegroundColor Yellow
-    Write-Host ""
-    wsl.exe --install -d $Distro
-    # Listo si Ubuntu quedo registrado en esta cuenta (el codigo de salida es el de la shell)
-    $script:instalado = ((Get-WslDistros) -contains $Distro)
+    # Sin abrirlo: asi no pide crear usuario; el script crea el del curso.
+    wsl.exe --install -d $Distro --no-launch
+
+    # En algunas versiones de WSL, "--no-launch" deja Ubuntu instalado pero sin
+    # registrar hasta abrirlo. Se registra como root sin hacer preguntas.
+    if (-not ((Get-WslDistros) -contains $Distro)) {
+        if (Get-Command ubuntu2404.exe -ErrorAction SilentlyContinue) {
+            ubuntu2404.exe install --root
+        }
+    }
+    if (-not ((Get-WslDistros) -contains $Distro)) { $script:instalado = $false; return }
+
+    Write-Host "Creando el usuario del curso en Ubuntu ($LinuxUser)..." -ForegroundColor Cyan
+    $WslPath = (wsl.exe -d $Distro -u root -- wslpath -a ($Here -replace '\\', '/')).Trim()
+    wsl.exe -d $Distro -u root -- bash -c "sed 's/\r$//' '$WslPath/wsl/crear-usuario.sh' | bash -s -- '$LinuxUser' '$LinuxClave'"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "ERROR: no se pudo crear el usuario de Ubuntu." -ForegroundColor Red
+        $script:instalado = $false; return
+    }
+    # Reiniciar Ubuntu para que tome el usuario por defecto
+    wsl.exe --terminate $Distro | Out-Null
+    $quien = ""
+    try { $quien = (wsl.exe -d $Distro -- whoami 2>$null | Out-String).Trim() } catch { }
+    $script:instalado = ($quien -eq $LinuxUser)
 }
 
 # --- Componentes: si WSL ya funciona no hace falta pedir administrador ---
@@ -164,7 +184,7 @@ $instalado = $script:instalado
 Write-Host ""
 Write-Host "==================================================================" -ForegroundColor Green
 if ($instalado) {
-    Write-Host " Ubuntu quedo instalado con tu usuario."
+    Write-Host " Ubuntu quedo instalado (usuario: $LinuxUser, contrasena: $LinuxClave)."
     Write-Host " Sigue el paso 2 (si usas instalar-windows, continua solo)."
 } else {
     Write-Host " Falta un reinicio para terminar de activar WSL:"

@@ -27,8 +27,8 @@ if (-not ((Get-WslDistros) -contains $Distro)) {
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     if (-not ((Get-WslDistros) -contains $Distro)) {
         Write-Host ""
-        Write-Host "Ubuntu todavia no esta listo. Abre 'Ubuntu 24.04' desde el menu Inicio," -ForegroundColor Yellow
-        Write-Host "crea tu usuario y vuelve a dar doble clic a instalar-windows." -ForegroundColor Yellow
+        Write-Host "Ubuntu todavia no esta listo. Reinicia Windows y vuelve a dar doble clic" -ForegroundColor Yellow
+        Write-Host "a instalar-windows. Si sigue igual, avisa al instructor." -ForegroundColor Yellow
         exit 1
     }
 }

@@ -1,6 +1,6 @@
 # Instalación en Mac
 
-Esta guía deja tu Mac lista **antes del curso**. No hace falta saber programar ni instalar Homebrew: un solo programa instala todo, y tú solo copias un comando y das algunos clics.
+Esta guía deja tu Mac lista **antes del curso**. No hace falta saber programar ni instalar Homebrew: pegas **una sola línea** en la Terminal y el programa instala todo.
 
 Sirve para Mac con procesador **Apple (M1, M2, M3, M4…)** y con procesador **Intel**. El programa detecta cuál tienes.
 
@@ -30,25 +30,22 @@ Sirve para Mac con procesador **Apple (M1, M2, M3, M4…)** y con procesador **I
   - **GitHub** (gratuita) en [github.com](https://github.com/signup): ahí se guarda tu trabajo.
   - **DigitalOcean** en [digitalocean.com](https://www.digitalocean.com): ahí se publica tu tablero. Pide una tarjeta; el costo mensual es bajo y se puede apagar en cualquier momento.
 - [ ] **Tus propios reportes** de 2 o 3 áreas en Excel (o una versión sin datos confidenciales), para aplicar lo aprendido a tu caso.
-- [ ] **La carpeta del curso** descomprimida. Si la bajaste como `.zip`, haz doble clic en el archivo y la Mac la descomprime sola (normalmente en **Descargas**).
 
 > No necesitas contraseña de administrador.
 
 ---
 
-### Paso 1: Ejecutar el programa de instalación
+### Paso 1: Pegar una línea en la Terminal
 
 1. Abre la app **Terminal**: presiona `Cmd + Espacio`, escribe `Terminal` y presiona **Enter**.
-2. En la Terminal escribe `bash` seguido de **un espacio** (todavía no presiones Enter).
-3. Abre la carpeta del curso en el Finder, entra a **`instalacion`** → **`mac`** y **arrastra el archivo `instalar-mac.sh`** a la ventana de la Terminal. Se escribe solo la ruta del archivo.
-   La línea queda parecida a esta:
+2. Copia esta línea completa (en GitHub hay un botón de copiar a la derecha del recuadro):
 
    ```bash
-   bash /Users/tu-nombre/Downloads/curso-tablero-director/instalacion/mac/instalar-mac.sh
+   bash -c "$(curl -fsSL https://raw.githubusercontent.com/dragones-tech/curso-tablero-director/main/instalacion/mac/instalar-mac.sh)"
    ```
 
-4. Presiona **Enter** y espera. Vas a ver mucho texto pasar; es normal. Durante la instalación pueden aparecer estas ventanas:
-   - **"La Terminal quiere acceder a archivos de la carpeta Descargas"**: haz clic en **Permitir**.
+3. Pégala en la Terminal con `Cmd + V` y presiona **Enter**.
+4. Espera. Primero baja los materiales del curso y luego instala todo. Vas a ver mucho texto pasar; es normal. Durante la instalación pueden aparecer estas ventanas:
    - **"El comando git requiere las herramientas de desarrollo..."**: haz clic en **Instalar** y luego en **Aceptar**. Tarda de 5 a 20 minutos; el programa espera solo.
    - **Bienvenida de Rancher Desktop**: deja las opciones como están y haz clic en **Aceptar**.
    - Si macOS pregunta si permites algo a **Rancher Desktop**, responde que sí.
@@ -57,7 +54,15 @@ Sirve para Mac con procesador **Apple (M1, M2, M3, M4…)** y con procesador **I
 
 ✅ **Listo cuando:** ves el mensaje verde **"Listo."** y la página <http://localhost:8000> abre.
 
-> Si aparece un mensaje en **rojo** que empieza con *"ERROR"*, léelo: casi siempre dice qué hacer. Puedes volver a ejecutar este paso sin riesgo: lo que ya está instalado no se repite.
+> Si aparece un mensaje en **rojo** que empieza con *"ERROR"*, léelo: casi siempre dice qué hacer. Puedes volver a pegar la línea las veces que haga falta: lo que ya está instalado no se repite.
+>
+> Los materiales del curso quedan en tu carpeta de inicio: `~/curso-tablero-director` (en el Finder: menú **Ir** → **Inicio**).
+
+<details>
+<summary><b>Alternativa: si ya tienes la carpeta del curso</b></summary>
+
+Si descargaste el curso como `.zip` (y la Mac lo descomprimió), en la Terminal escribe `bash` seguido de **un espacio**, arrastra a la ventana el archivo **`instalacion` → `mac` → `instalar-mac.sh`** y presiona **Enter**. Si aparece *"La Terminal quiere acceder a archivos de la carpeta Descargas"*, haz clic en **Permitir**.
+</details>
 
 ---
 
@@ -113,27 +118,27 @@ Actualiza desde **Configuración del Sistema → General → Actualización de s
 </details>
 
 <details>
-<summary><b>"No such file or directory" al ejecutar el paso 1</b></summary>
+<summary><b>"No such file or directory" o "command not found" justo al pegar la línea</b></summary>
 
-La ruta quedó mal escrita. Escribe otra vez `bash ` (con espacio) y **arrastra** el archivo `instalar-mac.sh` en lugar de escribir la ruta a mano.
+La línea no se copió completa. Vuelve a copiarla con el botón de copiar de GitHub (o seleccionándola toda) y pégala otra vez. Si usas la alternativa de arrastrar el archivo, arrástralo en lugar de escribir la ruta a mano.
 </details>
 
 <details>
 <summary><b>"Operation not permitted"</b></summary>
 
-La Terminal no tiene permiso para leer la carpeta del curso. Ve a **Configuración del Sistema → Privacidad y seguridad → Archivos y carpetas → Terminal** y activa la carpeta donde está el curso (por ejemplo, *Descargas*). Vuelve a ejecutar el paso 1.
+La Terminal no tiene permiso para leer la carpeta del curso. Ve a **Configuración del Sistema → Privacidad y seguridad → Archivos y carpetas → Terminal** y activa la carpeta donde está el curso (por ejemplo, *Descargas*). Vuelve a ejecutar el paso 1 (esto solo pasa con la alternativa de arrastrar el archivo).
 </details>
 
 <details>
 <summary><b>"Docker no arranco"</b></summary>
 
-Abre **Rancher Desktop** desde la carpeta **Aplicaciones**, espera a que termine de cargar (la primera vez tarda unos minutos) y vuelve a ejecutar el paso 1.
+Abre **Rancher Desktop** desde la carpeta **Aplicaciones**, espera a que termine de cargar (la primera vez tarda unos minutos) y vuelve a pegar la línea del paso 1.
 </details>
 
 <details>
 <summary><b>"claude: command not found", "herdr: command not found" o "docker: command not found"</b></summary>
 
-Cierra la Terminal y abre una nueva. Si sigue igual, vuelve a ejecutar el paso 1.
+Cierra la Terminal y abre una nueva. Si sigue igual, vuelve a pegar la línea del paso 1.
 </details>
 
 <details>
